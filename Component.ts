@@ -27,7 +27,7 @@ class Component {
             ctx.font = this.fontFamily + ' ' + this.fontSize;
             ctx.fillStyle = this.color;
             ctx.fillText(this.text, this.x, this.y);
-        }else if(this.type == 'png') {
+        }else if(this.type == 'fish') {
             ctx.drawImage(myGameArea.fishSprite, this.x, this.y, this.width, this.height);
         }else if(this.type == 'tree') {
             ctx.drawImage(myGameArea.woodSprite, this.x, this.y, this.width, this.height);

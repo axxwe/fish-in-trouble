@@ -1,5 +1,5 @@
 function startGame() {
-    myGamePiece = new Component(126, 104, "", 30, 120, "png");
+    myGamePiece = new Component(126, 104, "", 30, 120, "fish");
     myGamePiece.gravity = 0.05;
     myScore = new Component(0, 0, "black", 280, 40, "text", "30px", "Consolas");
     myGameArea.start();

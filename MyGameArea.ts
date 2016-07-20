@@ -20,9 +20,8 @@ class MyGameArea {
 
     // public function __construct
     constructor() {
-        this.fishSprite.src    = 'fish.png';
-        this.woodSprite.src    = 'tree.jpg';
-        this.fishNetSprite.src = 'net.gif';
+        this.fishSprite.src    = 'img/fish.png';
+        this.woodSprite.src    = 'img/tree.jpg';
         this.gameSpeed         = 10;
     }
 
@@ -34,9 +33,7 @@ class MyGameArea {
         this.context = this.canvas.getContext('2d');
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
-        this.interval = setInterval(function() { 
-            updateGameArea(this.distanceElements); 
-        }, this.gameSpeed );
+        this.interval = setInterval(function() { updateGameArea(this.distanceElements);}, this.gameSpeed );
     }
 
     public clear() {

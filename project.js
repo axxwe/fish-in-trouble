@@ -10,9 +10,8 @@ var MyGameArea = (function () {
         this.fishSprite = document.createElement('img');
         this.woodSprite = document.createElement('img');
         this.fishNetSprite = document.createElement('img');
-        this.fishSprite.src = 'fish.png';
-        this.woodSprite.src = 'tree.jpg';
-        this.fishNetSprite.src = 'net.gif';
+        this.fishSprite.src = 'img/fish.png';
+        this.woodSprite.src = 'img/tree.jpg';
         this.gameSpeed = 10;
     }
     // public function start
@@ -23,9 +22,7 @@ var MyGameArea = (function () {
         this.context = this.canvas.getContext('2d');
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
-        this.interval = setInterval(function () {
-            updateGameArea(this.distanceElements);
-        }, this.gameSpeed);
+        this.interval = setInterval(function () { updateGameArea(this.distanceElements); }, this.gameSpeed);
     };
     MyGameArea.prototype.clear = function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -73,7 +70,7 @@ var Component = (function () {
             ctx.fillStyle = this.color;
             ctx.fillText(this.text, this.x, this.y);
         }
-        else if (this.type == 'png') {
+        else if (this.type == 'fish') {
             ctx.drawImage(myGameArea.fishSprite, this.x, this.y, this.width, this.height);
         }
         else if (this.type == 'tree') {
@@ -99,7 +96,7 @@ var Component = (function () {
     return Component;
 }());
 function startGame() {
-    myGamePiece = new Component(126, 104, "", 30, 120, "png");
+    myGamePiece = new Component(126, 104, "", 30, 120, "fish");
     myGamePiece.gravity = 0.05;
     myScore = new Component(0, 0, "black", 280, 40, "text", "30px", "Consolas");
     myGameArea.start();
