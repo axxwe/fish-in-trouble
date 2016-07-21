@@ -39,7 +39,11 @@ function updateGameArea(distanceElements: number) {
     myGameArea.fishSprite.nextAnimationFrame();
 
     if (myGameArea.frameNo == 1 || everyinterval(myGameArea.distanceElements)) {
-        myGameArea.distanceElements--;
+        
+        if( myGameArea.distanceElements > 200){
+            myGameArea.distanceElements = myGameArea.distanceElements - 5;
+        } // Decrease the distrance beetween objects
+
         console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;

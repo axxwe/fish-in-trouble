@@ -38,10 +38,9 @@ var MyGameArea = (function () {
         this.canvas = document.createElement('canvas');
         this.interval = null;
         // public fishSprite:HTMLImageElement       = document.createElement('img');
-        this.fishSprite = new BetaFish(159, 130, FishColor.YELLOW);
+        this.fishSprite = new BetaFish(159, 130, FishColor.RED);
         this.woodSprite = document.createElement('img');
         this.fishNetSprite = document.createElement('img');
-        // this.fishSprite.src    = 'img/fish.png';
         this.woodSprite.src = 'img/tree.jpg';
         this.gameSpeed = 10;
     }
@@ -103,7 +102,6 @@ var Component = (function () {
         }
         else if (this.type == 'fish') {
             ctx.fillStyle = 'red';
-            // ctx.fillRect(this.x, this.y, this.width, this.height);
             myGameArea.fishSprite.drawAtXY(this.x, this.y, ctx);
         }
         else if (this.type == 'tree') {
@@ -154,7 +152,9 @@ function updateGameArea(distanceElements) {
     myGameArea.frameNo++;
     myGameArea.fishSprite.nextAnimationFrame();
     if (myGameArea.frameNo == 1 || everyinterval(myGameArea.distanceElements)) {
-        myGameArea.distanceElements--;
+        if (myGameArea.distanceElements > 200) {
+            myGameArea.distanceElements = myGameArea.distanceElements - 5;
+        } // Decrease the distrance beetween objects
         console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;
