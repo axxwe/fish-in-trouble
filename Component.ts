@@ -28,7 +28,9 @@ class Component {
             ctx.fillStyle = this.color;
             ctx.fillText(this.text, this.x, this.y);
         }else if(this.type == 'fish') {
-            ctx.drawImage(myGameArea.fishSprite, this.x, this.y, this.width, this.height);
+           ctx.fillStyle = 'red';
+            // ctx.fillRect(this.x, this.y, this.width, this.height);
+            myGameArea.fishSprite.drawAtXY(this.x, this.y, ctx);
         }else if(this.type == 'tree') {
             ctx.drawImage(myGameArea.woodSprite, this.x, this.y, this.width, this.height);
         }

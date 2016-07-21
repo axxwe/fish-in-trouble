@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "target": "es5",
+    "sourceMap": false,
+    "outFile": "project.js",
+    "experimentalDecorators": true,
+    "noImplicitUseStrict": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

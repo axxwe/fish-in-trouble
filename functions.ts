@@ -10,7 +10,7 @@ function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {
         return true;
     }
-    
+
     return false;
 }
 
@@ -24,7 +24,7 @@ function updateGameArea(distanceElements: number) {
         height: number, 
         gap: number, 
         minHeight: number, 
-        maxHeight: number, 
+        maxHeight: number,
         minGap: number, 
         maxGap: number,
         i: number;
@@ -36,11 +36,11 @@ function updateGameArea(distanceElements: number) {
     }
     myGameArea.clear();
     myGameArea.frameNo++;
-    // if((myObstacles.length / 2) % 10 == 0 ) {
-    //     myGameArea.distanceElements--;
-    //     console.log(myGameArea.distanceElements);
-    // }
+    myGameArea.fishSprite.nextAnimationFrame();
+
     if (myGameArea.frameNo == 1 || everyinterval(myGameArea.distanceElements)) {
+        myGameArea.distanceElements--;
+        console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;
         maxHeight = 200;

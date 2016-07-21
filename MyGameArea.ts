@@ -12,7 +12,9 @@ class MyGameArea {
     
     public interval: number                  = null;
 
-    public fishSprite:HTMLImageElement       = document.createElement('img');
+    // public fishSprite:HTMLImageElement       = document.createElement('img');
+
+    public fishSprite: BetaFish              = new BetaFish(159, 130, FishColor.YELLOW);
 
     public woodSprite:HTMLImageElement       = document.createElement('img');
 
@@ -20,7 +22,7 @@ class MyGameArea {
 
     // public function __construct
     constructor() {
-        this.fishSprite.src    = 'img/fish.png';
+        // this.fishSprite.src    = 'img/fish.png';
         this.woodSprite.src    = 'img/tree.jpg';
         this.gameSpeed         = 10;
     }

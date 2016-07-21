@@ -1,3 +1,4 @@
+///<reference path="./BetaFish.ts" />
 ///<reference path="./MyGameArea.ts" />
 ///<reference path="./Component.ts" />
 ///<reference path="./functions.ts" />

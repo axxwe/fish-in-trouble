@@ -1,3 +1,33 @@
+var FishColor;
+(function (FishColor) {
+    FishColor[FishColor["RED"] = 0] = "RED";
+    FishColor[FishColor["YELLOW"] = 1] = "YELLOW";
+    FishColor[FishColor["GREEN"] = 2] = "GREEN";
+})(FishColor || (FishColor = {}));
+var BetaFish = (function () {
+    function BetaFish(width, height, fishColor) {
+        if (fishColor === void 0) { fishColor = FishColor.RED; }
+        this.width = width;
+        this.height = height;
+        this.fishColor = fishColor;
+        this.sprite = document.createElement('img');
+        this.currentAnimationFrame = 0;
+        this.spriteWidth = 307;
+        this.spriteHeight = 317;
+        this.sprite.src = 'img/beta-fish-sprite.png';
+    }
+    BetaFish.prototype.nextAnimationFrame = function () {
+        this.currentAnimationFrame++;
+        if (this.currentAnimationFrame == 16) {
+            this.currentAnimationFrame = 0;
+        }
+    };
+    BetaFish.prototype.drawAtXY = function (x, y, ctx) {
+        // console.log(this.fishColor * this.spriteHeight, this.fishColor, this.spriteHeight);
+        ctx.drawImage(this.sprite, this.currentAnimationFrame * this.spriteWidth, this.fishColor * this.spriteHeight, this.spriteWidth, this.spriteHeight, x, y, this.width, this.height);
+    };
+    return BetaFish;
+}());
 var MyGameArea = (function () {
     // public function __construct
     function MyGameArea() {
@@ -7,10 +37,11 @@ var MyGameArea = (function () {
         this.frameNo = 0;
         this.canvas = document.createElement('canvas');
         this.interval = null;
-        this.fishSprite = document.createElement('img');
+        // public fishSprite:HTMLImageElement       = document.createElement('img');
+        this.fishSprite = new BetaFish(159, 130, FishColor.YELLOW);
         this.woodSprite = document.createElement('img');
         this.fishNetSprite = document.createElement('img');
-        this.fishSprite.src = 'img/fish.png';
+        // this.fishSprite.src    = 'img/fish.png';
         this.woodSprite.src = 'img/tree.jpg';
         this.gameSpeed = 10;
     }
@@ -71,7 +102,9 @@ var Component = (function () {
             ctx.fillText(this.text, this.x, this.y);
         }
         else if (this.type == 'fish') {
-            ctx.drawImage(myGameArea.fishSprite, this.x, this.y, this.width, this.height);
+            ctx.fillStyle = 'red';
+            // ctx.fillRect(this.x, this.y, this.width, this.height);
+            myGameArea.fishSprite.drawAtXY(this.x, this.y, ctx);
         }
         else if (this.type == 'tree') {
             ctx.drawImage(myGameArea.woodSprite, this.x, this.y, this.width, this.height);
@@ -119,11 +152,10 @@ function updateGameArea(distanceElements) {
     }
     myGameArea.clear();
     myGameArea.frameNo++;
-    // if((myObstacles.length / 2) % 10 == 0 ) {
-    //     myGameArea.distanceElements--;
-    //     console.log(myGameArea.distanceElements);
-    // }
+    myGameArea.fishSprite.nextAnimationFrame();
     if (myGameArea.frameNo == 1 || everyinterval(myGameArea.distanceElements)) {
+        myGameArea.distanceElements--;
+        console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;
         maxHeight = 200;
@@ -161,6 +193,7 @@ addEventListener("keyup", function (event) {
         accelerate(0.05);
     }
 });
+///<reference path="./BetaFish.ts" />
 ///<reference path="./MyGameArea.ts" />
 ///<reference path="./Component.ts" />
 ///<reference path="./functions.ts" />
