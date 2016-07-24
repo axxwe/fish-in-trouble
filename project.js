@@ -38,7 +38,7 @@ var MyGameArea = (function () {
         this.canvas = document.createElement('canvas');
         this.interval = null;
         // public fishSprite:HTMLImageElement       = document.createElement('img');
-        this.fishSprite = new BetaFish(159, 130, FishColor.RED);
+        this.fishSprite = new BetaFish(159, 130, FishColor.GREEN);
         this.woodSprite = document.createElement('img');
         this.fishNetSprite = document.createElement('img');
         this.woodSprite.src = 'img/tree.jpg';
@@ -126,6 +126,29 @@ var Component = (function () {
     };
     return Component;
 }());
+var Obstacle = (function () {
+    function Obstacle() {
+        this.minHeight = 20;
+        this.maxHeight = 200;
+        this.height = 0;
+        this.minGap = 200;
+        this.maxGap = 250;
+        this.x = 0;
+        this.gap = 0;
+        var gap = Math.floor(Math.random() * (this.maxGap - this.minGap + 1) + this.minGap);
+        var height = Math.floor(Math.random() * (this.maxHeight - this.minHeight + 1) + this.minHeight);
+        var x = myGameArea.canvas.width;
+    }
+    Obstacle.prototype.createObs = function (direction) {
+        if (direction == 'up') {
+            new Component(30, this.height, "", this.x, 0, 'tree');
+        }
+        if (direction == 'down') {
+            new Component(30, this.x - this.height - this.gap, "", this.x, this.height + this.gap, 'tree');
+        }
+    };
+    return Obstacle;
+}());
 function startGame() {
     myGamePiece = new Component(126, 104, "", 30, 120, "fish");
     myGamePiece.gravity = 0.05;
@@ -155,7 +178,6 @@ function updateGameArea(distanceElements) {
         if (myGameArea.distanceElements > 200) {
             myGameArea.distanceElements = myGameArea.distanceElements - 5;
         } // Decrease the distrance beetween objects
-        console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;
         maxHeight = 200;
@@ -163,8 +185,11 @@ function updateGameArea(distanceElements) {
         minGap = 200;
         maxGap = 250;
         gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
-        myObstacles.push(new Component(30, height, "", x, 0, 'tree'));
-        myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
+        // myObstacles.push(new Component(130, height, "", x, 0, 'tree'));
+        // myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
+        console.log(myObstacle.createObs('up'));
+        myObstacles.push(myObstacle.createObs('up'));
+        myObstacles.push(myObstacle.createObs('down'));
     }
     for (i = 0; i < myObstacles.length; i++) {
         myObstacles[i].x--;
@@ -196,9 +221,11 @@ addEventListener("keyup", function (event) {
 ///<reference path="./BetaFish.ts" />
 ///<reference path="./MyGameArea.ts" />
 ///<reference path="./Component.ts" />
+///<reference path="./Obstacle.ts" />
 ///<reference path="./functions.ts" />
 ///<reference path="./events.ts" />
 var myGamePiece;
 var myObstacles = [];
 var myScore = null;
 var myGameArea = new MyGameArea();
+var myObstacle = new Obstacle();

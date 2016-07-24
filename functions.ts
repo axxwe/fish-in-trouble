@@ -44,7 +44,6 @@ function updateGameArea(distanceElements: number) {
             myGameArea.distanceElements = myGameArea.distanceElements - 5;
         } // Decrease the distrance beetween objects
 
-        console.log(myGameArea.distanceElements);
         x = myGameArea.canvas.width;
         minHeight = 20;
         maxHeight = 200;
@@ -52,8 +51,11 @@ function updateGameArea(distanceElements: number) {
         minGap = 200;
         maxGap = 250;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new Component(30, height, "", x, 0, 'tree'));
-        myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
+        // myObstacles.push(new Component(130, height, "", x, 0, 'tree'));
+        // myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
+        console.log(myObstacle.createObs('up'));
+        myObstacles.push( myObstacle.createObs('up') );
+        myObstacles.push( myObstacle.createObs('down') );
     }
     for (i = 0; i < myObstacles.length; i++) {
         myObstacles[i].x--;
@@ -70,4 +72,3 @@ function init()
 {
 
 }
-

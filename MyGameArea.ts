@@ -14,7 +14,7 @@ class MyGameArea {
 
     // public fishSprite:HTMLImageElement       = document.createElement('img');
 
-    public fishSprite: BetaFish              = new BetaFish(159, 130, FishColor.RED);
+    public fishSprite: BetaFish              = new BetaFish(159, 130, FishColor.GREEN);
 
     public woodSprite:HTMLImageElement       = document.createElement('img');
 
