@@ -5,7 +5,7 @@ addEventListener("keydown", function(event){
         }
         if( keyCode == 82) {
         	init();
-			console.log('reset');
+		console.log('reset');
         }
 });
 addEventListener("keyup", function(event){

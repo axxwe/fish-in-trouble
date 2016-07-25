@@ -51,11 +51,8 @@ function updateGameArea(distanceElements: number) {
         minGap = 200;
         maxGap = 250;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        // myObstacles.push(new Component(130, height, "", x, 0, 'tree'));
-        // myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
-        console.log(myObstacle.createObs('up'));
-        myObstacles.push( myObstacle.createObs('up') );
-        myObstacles.push( myObstacle.createObs('down') );
+        myObstacles.push(new Component(30, height, "", x, 0, 'tree'));
+        myObstacles.push(new Component(30, x - height - gap, "", x, height + gap, 'tree'));
     }
     for (i = 0; i < myObstacles.length; i++) {
         myObstacles[i].x--;
